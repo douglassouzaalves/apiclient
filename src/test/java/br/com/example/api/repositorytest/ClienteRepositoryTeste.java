@@ -3,6 +3,7 @@ package br.com.example.api.repositorytest;
 import br.com.example.api.entity.Cliente;
 import br.com.example.api.repository.ClienteRepository;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +15,16 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DataJpaTest
 @ExtendWith(SpringExtension.class)
 //@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@Sql(value = "/load-database.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+@Sql(value = "/load-database.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD) //usando pra me comunicar com a tabela
 @TestPropertySource("classpath:application-test.properties")
+@DisplayName("Tests for Cliente Repository")
 public class ClienteRepositoryTeste {
 
 
@@ -30,6 +32,7 @@ public class ClienteRepositoryTeste {
     ClienteRepository clienteRepository;
 
     @Test
+    @DisplayName("Test for List Client")
     public void list_Cliente() {
         int size = clienteRepository.findAll().size();
         assertEquals(1, size);
@@ -45,6 +48,7 @@ public class ClienteRepositoryTeste {
     }
 
     @Test
+    @DisplayName("Test delete")
     public void delete_Id_Cliente() {
         clienteRepository.deleteById(1L);
         List<Cliente> listCliente = clienteRepository.findAll();
@@ -60,7 +64,12 @@ public class ClienteRepositoryTeste {
         assertEquals(1L,byId.getId());
     }
 
-    private Cliente createCliente() {
+//    @Test
+//    public void erro_Id_NotExist_Remove(){
+//        assertThrows(ExceptionNotFound.class, () -> clienteRepository.deleteById(100L));
+//    }
+
+    private Cliente createCliente() { //utilizado para os testes
         return Cliente.builder()
                 .id(1L)
                 .nome("Testando")
