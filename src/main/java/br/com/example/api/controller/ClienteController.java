@@ -1,12 +1,13 @@
 package br.com.example.api.controller;
 
 import br.com.example.api.entity.Cliente;
+import br.com.example.api.exception.ResourceNotFoundException;
 import br.com.example.api.service.ClienteService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
+
 
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class ClienteController {
     @GetMapping("/{id}")
     public Cliente buscarClientePorId(@PathVariable("id") Long id) {
         return clienteService.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("Cliente não encontrado"));
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -46,7 +47,7 @@ public class ClienteController {
                 .map(cliente -> {
                     clienteService.deleteId(cliente.getId());
                     return Void.TYPE;
-                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
+                }).orElseThrow(() -> new ResourceNotFoundException("Este id não existe"));
     }
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
@@ -56,6 +57,6 @@ public class ClienteController {
                     modelMapper.map(cliente, clienteBase);
                     clienteService.save(clienteBase);
                     return Void.TYPE;
-                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
+                }).orElseThrow(() -> new ResourceNotFoundException("Não foi possível atualizar este cliente"));
     }
 }

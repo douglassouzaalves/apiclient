@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ResourceNotFoundDetails {
     private String title;
-    private int status;
+    private Integer status;
     private String details;
-    private long timestamp;
+    private Long timestamp;
     private String developerMessage;
 
 

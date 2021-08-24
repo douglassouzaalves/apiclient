@@ -1,6 +1,7 @@
 package br.com.example.api.repositorytest;
 
 import br.com.example.api.entity.Cliente;
+import br.com.example.api.exception.ResourceNotFoundException;
 import br.com.example.api.repository.ClienteRepository;
 
 import org.junit.jupiter.api.DisplayName;
@@ -66,7 +67,7 @@ public class ClienteRepositoryTeste {
 
 //    @Test
 //    public void erro_Id_NotExist_Remove(){
-//        assertThrows(ExceptionNotFound.class, () -> clienteRepository.deleteById(100L));
+//        assertThrows(ResourceNotFoundException.class, () -> clienteRepository.deleteById(0L));
 //    }
 
     private Cliente createCliente() { //utilizado para os testes

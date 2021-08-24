@@ -3,7 +3,6 @@ package br.com.example.api.service;
 import br.com.example.api.entity.Cliente;
 import br.com.example.api.repository.ClienteRepository;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

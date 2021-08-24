@@ -14,29 +14,29 @@ import java.util.Date;
 public class RestExceptionHandler extends Throwable {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<?> handleResourceNotFoundException(ResourceNotFoundException rfnException) {
-        ResourceNotFoundDetails rnfDetais;
-        rnfDetais = ResourceNotFoundDetails.ResourceNotFoundDetailsBuilder.newBuilder()
+        ResourceNotFoundDetails rnfDetails;
+        rnfDetails = ResourceNotFoundDetails.ResourceNotFoundDetailsBuilder.newBuilder()
                 .timestamp(new Date().getTime())
                 .status(HttpStatus.NOT_FOUND.value())
                 .title("Resource not found")
                 .details(rfnException.getMessage())
                 .developerMessage(rfnException.getClass().getName())
                 .build();
-        return new ResponseEntity<>(rnfDetais, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(rnfDetails, HttpStatus.NOT_FOUND);
     }
 
-//    @ExceptionHandler(NumberFormatException.class)
-//    public ResponseEntity<?> handleResourceBadRequest(NumberFormatException numberFormatException) {
-//        ResourceNotFoundDetails rnfDetais;
-//        rnfDetais = ResourceNotFoundDetails.ResourceNotFoundDetailsBuilder.newBuilder()
-//                .timestamp(new Date().getTime())
-//                .status(HttpStatus.BAD_REQUEST.value())
-//                .title("Error...")
-//                .details(numberFormatException.getMessage())
-//                .developerMessage(numberFormatException.getClass().getName())
-//                .build();
-//        return new ResponseEntity<>(rnfDetais, HttpStatus.BAD_REQUEST);
-//    }
+    @ExceptionHandler(NumberFormatException.class)
+    public ResponseEntity<?> handleResourceBadRequest(NumberFormatException numberFormatException) {
+        ResourceNotFoundDetails rnfDetails;
+        rnfDetails = ResourceNotFoundDetails.ResourceNotFoundDetailsBuilder.newBuilder()
+                .timestamp(new Date().getTime())
+                .status(HttpStatus.BAD_REQUEST.value())
+                .title("Error...")
+                .details(numberFormatException.getMessage())
+                .developerMessage(numberFormatException.getClass().getName())
+                .build();
+        return new ResponseEntity<>(rnfDetails, HttpStatus.BAD_REQUEST);
+    }
 
 
 }
