@@ -2,13 +2,16 @@ package br.com.example.api.service;
 
 import br.com.example.api.entity.Cliente;
 import br.com.example.api.repository.ClienteRepository;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 import java.util.Optional;
 
 @Data
+@AllArgsConstructor
 @Service
 public class ClienteService {
 

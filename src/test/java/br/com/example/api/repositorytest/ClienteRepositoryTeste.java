@@ -66,8 +66,8 @@ public class ClienteRepositoryTeste {
     }
 
 //    @Test
-//    public void erro_Id_NotExist_Remove(){
-//        assertThrows(ResourceNotFoundException.class, () -> clienteRepository.deleteById(0L));
+//    public void erro_Id_NotExist(){
+//        assertThrows(ResourceNotFoundException.class, () -> clienteRepository.findById(0L));
 //    }
 
     private Cliente createCliente() { //utilizado para os testes
