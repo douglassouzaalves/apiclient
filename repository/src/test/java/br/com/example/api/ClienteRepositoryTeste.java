@@ -1,7 +1,6 @@
 package br.com.example.api;
 
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -35,10 +34,10 @@ public class ClienteRepositoryTeste {
     ClienteRepository clienteRepository;
 
 
+
     @Test
     @DisplayName("Test for List Client")
     public void list_Cliente() {
-        ClienteRepository clienteRepository;
         int size = clienteRepository.findAll().size();
         assertEquals(1, size);
     }
